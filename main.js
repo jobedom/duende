@@ -1,7 +1,22 @@
-var menubar = require('menubar')
+import path from 'path'
+import menubar from 'menubar'
 
-var mb = menubar()
+const appPath = path.resolve(__dirname, 'app')
+const iconPath = path.resolve(appPath, 'icons/IconTemplate.png')
 
-mb.on('ready', function ready () {
-  console.log('app is ready')
+const mb = menubar({
+   dir: appPath,
+   icon: iconPath,
+   preloadWindow: true,
+   width: 400,
+   height: 400,
+
+})
+
+mb.on('after-hide', () => {
+   mb.app.hide()
+})
+
+mb.on('ready', () => {
+   console.log('app is ready')
 })
