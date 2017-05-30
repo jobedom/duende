@@ -1,5 +1,5 @@
-import path from 'path'
-import menubar from 'menubar'
+const path = require('path')
+const menubar = require('menubar')
 
 const appPath = path.resolve(__dirname, 'app')
 const iconPath = path.resolve(appPath, 'icons/IconTemplate.png')
