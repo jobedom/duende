@@ -1,16 +1,19 @@
 {
-    "title": "Project",
+    "title": "Duende",
     "options": [
-        "Terminal": {
+        {
+            "label": "Terminal",
             "cmd": "iTerm.app",
             "options": "--new"
-        }
+        },
         "-",
-        "Watch": {
+        {
+            "label": "Watch",
             "cmd": "yarn watch",
             "auto": true
         },
-        "Build": {
+        {
+            "label": "Build",
             "cmd": "yarn build",
             "auto": true
         }

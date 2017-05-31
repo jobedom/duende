@@ -7,7 +7,7 @@ charset = utf-8
 indent_style = space
 indent_size = 4
 
-[*.less]
+[*.styl]
 indent_size = 3
 
 [*.json]

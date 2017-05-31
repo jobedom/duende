@@ -4,10 +4,17 @@ const menubar = require('menubar')
 const appPath = path.resolve(__dirname, 'app')
 const iconPath = path.resolve(appPath, 'icons/IconTemplate.png')
 
+const DEVELOPMENT = process.env.NODE_ENV === 'development'
+const PRODUCTION = !DEVELOPMENT
+
+global.DEVELOPMENT = DEVELOPMENT
+global.PRODUCTION = PRODUCTION
+
 const mb = menubar({
    dir: appPath,
    icon: iconPath,
    preloadWindow: true,
+   alwaysOnTop: DEVELOPMENT,
    width: 400,
    height: 400,
 
@@ -18,5 +25,6 @@ mb.on('after-hide', () => {
 })
 
 mb.on('ready', () => {
-   console.log('app is ready')
+   if (DEVELOPMENT)
+      mb.window.openDevTools()
 })
