@@ -1,3 +1,6 @@
-<div>
-  <span @click="incNumber">Hello! ({{ number }})</span>
-</div>
+<h1>{{ title }}</h1>
+<ul>
+  <li v-for="item in options" :class="{ separator: item.separator }">
+    {{ item.label }}
+  </li>
+</ul>

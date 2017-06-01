@@ -1,4 +1,3 @@
-* Use chokidar to watch definition file and reload if needed
 * Receive definition file in command line
 * Associate extension with application to allow double-click opening
 * Define document structure/schema

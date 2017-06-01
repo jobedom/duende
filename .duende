@@ -16,6 +16,21 @@
             "label": "Build",
             "cmd": "yarn build",
             "auto": true
+        },
+        {
+            "label": "One",
+            "cmd": "yarn build",
+            "auto": true
+        },
+        {
+            "label": "Two three",
+            "cmd": "yarn build",
+            "auto": true
+        },
+        {
+            "label": "Four",
+            "cmd": "yarn build",
+            "auto": true
         }
     ]
 }
