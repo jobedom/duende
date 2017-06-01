@@ -55,12 +55,23 @@ module.exports = {
       },
 
       clickItem(item) {
-         console.log('item', JSON.stringify(item))
+         let cmd = item.cmd
+         cmd = cmd.replace(/%p/g, this.projectPath)
+         const matches = /^\s*([\w\s_]+\.app)\s*(.*)$/i.exec(cmd)
+         if (matches)
+            cmd = 'open -n -a "' + matches[1] + '" --args ' + matches[2]
+         console.log(cmd)
+         const exec = require("child_process").exec
+         exec(cmd, error => {
+            if (error)
+               console.error('Launch error:', error)
+         })
       }
    },
 
    mounted() {
-      this.docFilePath = path.resolve(__dirname, '../../../.duende')
+      this.projectPath = path.resolve(__dirname, '../../..')
+      this.docFilePath = path.resolve(this.projectPath, '.duende')
       this.loadDocument()
       this.setupDocumentWatcher()
    },
