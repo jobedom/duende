@@ -50,6 +50,10 @@ module.exports = {
 
       removeDocumentWatcher() {
          this.watcher.close()
+      },
+
+      clickItem(item) {
+         console.log('item', JSON.stringify(item))
       }
    },
 

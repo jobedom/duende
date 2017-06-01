@@ -1,7 +1,7 @@
 const path = require('path')
 const menubar = require('menubar')
 
-const appPath = path.resolve(__dirname, 'app')
+const appPath = __dirname
 const iconPath = path.resolve(appPath, 'icons/IconTemplate.png')
 
 const DEVELOPMENT = process.env.NODE_ENV === 'development'

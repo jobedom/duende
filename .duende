@@ -1,36 +1,63 @@
 {
-    "title": "Duende",
-    "options": [
-        {
-            "label": "Terminal",
-            "cmd": "iTerm.app",
-            "options": "--new"
-        },
-        "-",
-        {
-            "label": "Watch",
-            "cmd": "yarn watch",
-            "auto": true
-        },
-        {
-            "label": "Build",
-            "cmd": "yarn build",
-            "auto": true
-        },
-        {
-            "label": "One",
-            "cmd": "yarn build",
-            "auto": true
-        },
-        {
-            "label": "Two three",
-            "cmd": "yarn build",
-            "auto": true
-        },
-        {
-            "label": "Four",
-            "cmd": "yarn build",
-            "auto": true
-        }
-    ]
+   "title": "Duende",
+   "options": [{
+         "label": "Terminal",
+         "cmd": "iTerm.app",
+         "options": "--new"
+      },
+      "-",
+      {
+         "label": "Watch",
+         "cmd": "yarn watch",
+         "auto": true
+      },
+      {
+         "label": "Build",
+         "cmd": "yarn build",
+         "auto": true
+      },
+      "-",
+      {
+         "label": "One",
+         "cmd": "yarn build",
+         "auto": true
+      },
+      {
+         "label": "Two three",
+         "cmd": "yarn build",
+         "auto": true
+      },
+      {
+         "label": "Four",
+         "cmd": "yarn build",
+         "auto": true
+      },
+      "-",
+      {
+         "label": "Watch",
+         "cmd": "yarn watch",
+         "auto": true
+      },
+      {
+         "label": "Build",
+         "cmd": "yarn build",
+         "auto": true
+      },
+      "-",
+      {
+         "label": "One",
+         "cmd": "yarn build",
+         "auto": true
+      },
+      {
+         "label": "Two three",
+         "cmd": "yarn build",
+         "auto": true
+      },
+      {
+         "label": "Four",
+         "cmd": "yarn build",
+         "auto": true
+      }
+   ]
 }

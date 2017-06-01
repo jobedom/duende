@@ -1,6 +1,9 @@
 <h1>{{ title }}</h1>
 <ul>
-  <li v-for="item in options" :class="{ separator: item.separator }">
-    {{ item.label }}
+  <li
+    v-for="item in options"
+    :class="{ separator: item.separator }"
+    @click="clickItem(item)">
+      {{ item.label }}
   </li>
 </ul>
