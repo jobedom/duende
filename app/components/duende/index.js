@@ -27,12 +27,14 @@ module.exports = {
                this.title = doc.title
                _.each(doc.options, item => {
                   const separator = (item === '-')
-                  if (separator)
-                     item = {
-                        label: ''
-                     }
-                  item.separator = separator
-                  this.options.push(item)
+                  if (separator) {
+                     const len = this.options.length
+                     if (len > 0)
+                        this.options[len - 1].separator = true
+                  } else {
+                     item.separator = false
+                     this.options.push(item)
+                  }
                })
             }
          })
