@@ -17,7 +17,7 @@
         "electron-devtools-installer": "^2.2.0",
         "electron-packager": "^8.7.0"
     },
-    "main": "main.js",
+    "main": "app/browser.js",
     "scripts": {
         "build": "electron-packager . Example --platform=darwin --arch=x64 --electron-version=1.6.10 --icon=Icon.icns",
         "start": "NODE_ENV=development electron ."
