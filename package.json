@@ -9,6 +9,7 @@
         "jeet": "^7.1.0",
         "lodash": "^4.17.4",
         "menubar": "^5.2.3",
+        "regexp-quote": "^0.0.0",
         "rupture": "^0.6.2",
         "stylus": "^0.54.5",
         "vue": "^2.3.3"
@@ -16,7 +17,8 @@
     "devDependencies": {
         "electron": "^1.6.10",
         "electron-devtools-installer": "^2.2.0",
-        "electron-packager": "^8.7.0"
+        "electron-packager": "^8.7.0",
+        "stylint": "^1.5.9"
     },
     "main": "app/browser.js",
     "scripts": {

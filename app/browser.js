@@ -25,6 +25,7 @@ mb.on('after-hide', () => {
 })
 
 mb.on('ready', () => {
+   mb.window.setResizable(false)
    if (DEVELOPMENT)
       mb.window.openDevTools()
 })

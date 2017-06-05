@@ -6,17 +6,17 @@ const path = require('path')
 const fs = require('fs')
 const _ = require('lodash')
 const insertCss = require('insert-css')
+// const devToolsInstaller = require('electron-devtools-installer')
 
 window.DEVELOPMENT = remote.getGlobal('DEVELOPMENT')
 window.PRODUCTION = remote.getGlobal('PRODUCTION')
 
-if (DEVELOPMENT) {
-   const devToolsInstaller = require('electron-devtools-installer')
-   const installExtension = devToolsInstaller.default
-   const VUEJS_DEVTOOLS = devToolsInstaller.VUEJS_DEVTOOLS
-   installExtension(VUEJS_DEVTOOLS)
-      .catch((error) => console.error('DevTools Error', error))
-}
+// if (DEVELOPMENT) {
+//    const installExtension = devToolsInstaller.default
+//    const VUEJS_DEVTOOLS = devToolsInstaller.VUEJS_DEVTOOLS
+//    installExtension(VUEJS_DEVTOOLS)
+//       .catch(error => console.error('DevTools Error', error))
+// }
 
 const defaultTemplate = '<slot></slot>'
 

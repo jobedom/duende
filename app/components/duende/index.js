@@ -1,7 +1,10 @@
 const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
+const quote = require('regexp-quote')
 const chokidar = require('chokidar')
+const remote = require('electron').remote
+const exec = require("child_process").exec
 
 module.exports = {
 
@@ -9,6 +12,7 @@ module.exports = {
       return {
          docFilePath: null,
          title: '',
+         apps: {},
          options: []
       }
    },
@@ -25,6 +29,7 @@ module.exports = {
             else {
                const doc = JSON.parse(str)
                this.title = doc.title
+               this.apps = doc.apps
                _.each(doc.options, item => {
                   const separator = (item === '-')
                   if (separator) {
@@ -54,17 +59,39 @@ module.exports = {
          this.watcher.close()
       },
 
-      clickItem(item) {
-         let cmd = item.cmd
-         cmd = cmd.replace(/%p/g, this.projectPath)
-         const matches = /^\s*([\w\s_]+\.app)\s*(.*)$/i.exec(cmd)
-         if (matches)
-            cmd = 'open -n -a "' + matches[1] + '" --args ' + matches[2]
+      resizeWindow() {
+         const win = remote.getCurrentWindow()
+         const [width, ] = win.getSize()
+         const content = this.$refs.content
+         const newHeight = content.offsetHeight
+         win.setSize(width, newHeight)
+      },
+
+      expandMacros(str) {
+         if (!this.macros) {
+            this.macros = []
+            const macros = {
+               p: `"${this.projectPath}"`
+            }
+            _.assign(macros, this.apps)
+            _.each(macros, (value, name) => {
+               const pattern = '%' + quote(name) + '\\b'
+               const regexp = new RegExp(pattern, 'g')
+               this.macros.push([regexp, value])
+            })
+         }
+         let expanded = str
+         _.each(this.macros, ([regexp, value]) => {
+            expanded = expanded.replace(regexp, value)
+         })
+         return expanded
+      },
+
+      execute(cmd) {
          console.log(cmd)
-         const exec = require("child_process").exec
          exec(cmd, error => {
             if (error)
-               console.error('Launch error:', error)
+               console.error('Execute error:', error)
          })
       }
    },
@@ -74,6 +101,10 @@ module.exports = {
       this.docFilePath = path.resolve(this.projectPath, '.duende')
       this.loadDocument()
       this.setupDocumentWatcher()
+   },
+
+   updated() {
+      this.resizeWindow()
    },
 
    destroyed() {
