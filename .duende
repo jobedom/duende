@@ -4,7 +4,7 @@
         "editor": "Sublime Text.app",
         "ide": "Visual Studio Code.app",
         "terminal": "iTerm.app"
-    }, 
+    },
     "options": [{
             "kind": "application",
             "label": "Editar .duende",
@@ -35,4 +35,70 @@
             "auto": true
         }
     ]
+}
+{
+   "title": "Duende",
+   "options": [{
+         "label": "Editar .duende",
+         "cmd": "Sublime Text.app %p/.duende"
+      },
+      "-", {
+         "label": "Terminal",
+         "cmd": "iTerm.app %p"
+      },
+      {
+         "label": "Visual Studio Code",
+         "cmd": "Visual Studio Code.app %p",
+         "auto": true
+      },
+      "-",
+      {
+         "label": "Build",
+         "cmd": "yarn build",
+         "auto": true
+      },
+      "-",
+      {
+         "label": "One",
+         "cmd": "yarn build",
+         "auto": true
+      },
+      {
+         "label": "Two three",
+         "cmd": "yarn build",
+         "auto": true
+      },
+      {
+         "label": "Four",
+         "cmd": "yarn build",
+         "auto": true
+      },
+      "-",
+      {
+         "label": "Watch",
+         "cmd": "yarn watch",
+         "auto": true
+      },
+      {
+         "label": "Build",
+         "cmd": "yarn build",
+         "auto": true
+      },
+      "-",
+      {
+         "label": "One",
+         "cmd": "yarn build",
+         "auto": true
+      },
+      {
+         "label": "Two three",
+         "cmd": "yarn build",
+         "auto": true
+      },
+      {
+         "label": "Four",
+         "cmd": "yarn build",
+         "auto": true
+      }
+   ]
 }
