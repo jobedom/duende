@@ -31,63 +31,60 @@ const mixinsPath = stylesPath + 'mixins/**'
 const mainStylesPath = path.resolve(__dirname, 'styles/main.styl')
 
 glob(componentsGlob, (error, files) => {
-   if (error)
-      throw error
-   _.each(files, file => {
-      const name = file
-         .replace(componentsPath, '')
-         .replace(/\/index\.js$/, '')
-         .replace(/\//g, '-')
-      const folder = path.dirname(file) + '/'
-      const templatePath = folder + 'template.html'
-      let template = defaultTemplate
-      try {
-         template = fs.readFileSync(templatePath, 'utf8')
-      } catch (e) { /* ... */ }
-      template = `<div class="component-${name}">${template}</div>`
-      const definition = require(file)
-      definition.template = template
-      Vue.component(name, definition)
-   })
-
-   const insertStylus = (source, filename) =>  {
-      stylus(source)
-         .set('filename', filename)
-         .import(definitionsPath)
-         .import(mixinsPath)
-         .render((error, css) => {
-            if (error)
-               console.error(error.name, error.message)
-            else
-               insertCss(css)
-         })
-   }
-
-   const mainStylesSource = fs.readFileSync(mainStylesPath, 'utf8')
-   insertStylus(mainStylesSource, mainStylesPath)
-
-   glob(stylesGlob, (error, files) => {
-      if (error)
-         throw error
-      _.each(files, file => {
-         const name = file
+    if (error)
+        throw error
+    _.each(files, file => {
+        const name = file
             .replace(componentsPath, '')
-            .replace(/\/styles\.styl$/, '')
+            .replace(/\/index\.js$/, '')
             .replace(/\//g, '-')
-         const str = fs.readFileSync(file, 'utf8')
-         const indentation = '    '
-         const lines = str.split('\n')
-         const indentedLines = _.map(lines, line => indentation + line)
-         const indentedSource = indentedLines.join('\n')
-         const finalSource =
-            `div.component-${name}\n` +
-            indentation + 'component()\n' +
-            indentedSource
-         insertStylus(finalSource, file)
-      })
-      new Vue({
-         el: '#mount-point',
-         template: '<duende></duende>'
-      })
-   })
+        const folder = path.dirname(file) + '/'
+        const templatePath = folder + 'template.html'
+        let template = defaultTemplate
+        try {
+            template = fs.readFileSync(templatePath, 'utf8')
+        } catch (e) { /* ... */ }
+        template = `<div class="component-${name}">${template}</div>`
+        const definition = require(file)
+        definition.template = template
+        Vue.component(name, definition)
+    })
+
+    const insertStylus = (source, filename) => {
+        stylus(source)
+            .set('filename', filename)
+            .import(definitionsPath)
+            .import(mixinsPath)
+            .render((error, css) => {
+                if (error)
+                    console.error(error.name, error.message)
+                else
+                    insertCss(css)
+            })
+    }
+
+    const mainStylesSource = fs.readFileSync(mainStylesPath, 'utf8')
+    insertStylus(mainStylesSource, mainStylesPath)
+
+    glob(stylesGlob, (error, files) => {
+        if (error)
+            throw error
+        _.each(files, file => {
+            const name = file
+                .replace(componentsPath, '')
+                .replace(/\/styles\.styl$/, '')
+                .replace(/\//g, '-')
+            const source = fs.readFileSync(file, 'utf8')
+            const indentation = '    '
+            const componentDiv =
+                `div.component-${name}\n` +
+                indentation + 'component()\n'
+            const finalSource = source.replace('<component>', componentDiv)
+            insertStylus(finalSource, file)
+        })
+        new Vue({
+            el: '#mount-point',
+            template: '<duende></duende>'
+        })
+    })
 })
