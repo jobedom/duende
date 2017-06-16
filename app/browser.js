@@ -17,7 +17,6 @@ const mb = menubar({
    alwaysOnTop: DEVELOPMENT,
    width: 400,
    height: 400,
-
 })
 
 mb.on('after-hide', () => {
