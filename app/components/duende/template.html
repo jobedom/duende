@@ -1,15 +1,13 @@
 <div ref="content">
-  <h1>{{ title }}</h1>
-  <ul>
-    <li
-      v-for="item in options"
-      :class="{ separator: item.separator }">
-        <component
-          :is="'kind-' + item.kind"
-          :expand-macros="expandMacros"
-          :execute="execute"
-          :item="item">
-        </component>
-    </li>
-  </ul>
+   <h1>{{ title }}</h1>
+   <ul>
+      <li v-for="item in options"
+          :class="{ separator: item.separator }">
+         <component :is="'kind-' + item.kind"
+                    :expand-macros="expandMacros"
+                    :execute="execute"
+                    :item="item">
+         </component>
+      </li>
+   </ul>
 </div>
